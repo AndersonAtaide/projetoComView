@@ -14,19 +14,22 @@ create table tb_produto (
   pro_estoque int
 );
 
-
-
 create table tbusuarios(
 iduser int primary key auto_increment,
 nome varchar(50) not null,
-sobrenome varchar(50) not null,
-cpf varchar(11) not null unique,
+cpf varchar(14) not null unique,
 telefone varchar(15),
 login varchar(15) not null unique,
 senha varchar(15) not null,
 matricula int unique,
-nivelHierarquico int
+nivelHierarquico int,
+endereco varchar(150) not null,
+bairro varchar(50) not null,
+cidade varchar(50) not null,
+estado varchar(50) not null,
+cep varchar(50) not null
 );
+
 
 describe tbusuarios;
 
@@ -54,44 +57,6 @@ update tbusuarios set telefone='98888-8888' where iduser=2;
 -- deleção de dados
 
 delete from tbusuarios  where iduser=2;
-
-create table tbclientes(
-idcliente int primary key auto_increment,
-nomecliente varchar(50) not null,
-endcliente varchar(100),
-fonecliente varchar(50) not null,
-emailcliente varchar(50)
-);
-
-insert into tbclientes(nomecliente, endcliente, fonecliente, emailcliente)
-values('cliente de teste', 'rua de teste, n xxx', '922222222', 'testedeclientes@gmail.com');
-
-use dbinfox;
-create table tbos(
-os int primary key auto_increment,
-data_os timestamp default current_timestamp,
-equipamento varchar(150) not null,
-defeito varchar(150) not null,
-servico varchar(150),
-tecnico varchar(30),
-valor decimal(10,2),
-idcliente int not null,
-foreign key(idcliente) references tbclientes(idcliente)
-);
-
-describe tbos;
-
-insert into tbos (equipamento, defeito, servico, tecnico, valor, idcliente)
-values('notebook','não liga','troca de fonte','zé', 87.50,1);
-
--- O código abaixo traz informações de duas tabelas
-
-select
-O.os,equipamento,defeito,servico,valor,
-C.nomecliente,fonecliente
-from tbos as O
-inner join tbclientes as C
-on(O.idcliente = C.idcliente);
 
 select * from tbusuarios where login='admin' and senha='admin';
 
