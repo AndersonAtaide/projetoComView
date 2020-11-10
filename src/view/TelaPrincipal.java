@@ -168,7 +168,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void MenuItemSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuItemSobreActionPerformed
         // TODO add your handling code here:
-        new TelaSobre().setVisible(true);
+        TelaSobreInterna telaSobre = new TelaSobreInterna();
+        telaSobre.setVisible(true);
+        desktop.add(telaSobre);
     }//GEN-LAST:event_MenuItemSobreActionPerformed
 
     private void menuItemVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVendaActionPerformed
